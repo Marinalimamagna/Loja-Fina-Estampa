@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale - Roupas em Promoção</title>
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #000;
+            background-color: #f3e9db;
+        }
+        h1, h2 {
+            color: #FF69B4; /* Rosa */
+        }
+        a {
+            text-decoration: none;
+            color: #000; /* Preto */
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            color: #fff;
+            background-color: #FF69B4; /* Rosa */
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #c2185b; /* Tom mais escuro de rosa */
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #fbf6ef;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo img {
+            width: 120px;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+        }
+        nav ul li a {
+            font-weight: bold;
+            font-size: 1em;
+        }
+        nav ul li a:hover {
+            color: #FF69B4; /* Rosa */
+        }
+
+        /* Filtros de Categoria */
+        .category-filter {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .filter-options {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        /* Vitrine de Produtos */
+        .product-showcase {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste a largura mínima aqui */
+            gap: 20px;
+        }
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px; /* Reduzido o padding */
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+        .product-card h2 {
+            font-size: 1em; /* Reduzido o tamanho da fonte */
+            margin: 10px 0;
+        }
+        .product-card p {
+            font-size: 0.9em; /* Reduzido o tamanho da fonte */
+            color: #888;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .new-price {
+            font-size: 1.1em;
+            color: #FF69B4; /* Rosa */
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #f3e9db; /* Cinza escuro para o fundo do rodapé */
+            color: #78736c; /* Texto em branco para contraste */
+            padding: 30px;
+            text-align: center;
+        }
+        .footer-content p {
+            margin: 0; /* Remove a margem padrão do parágrafo */
+            font-size: 14px; /* Tamanho da fonte */
+            color: #777; /* Cor do texto */
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="img/3.png" alt="Logo da Loja">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="novidades.html">Novidades</a></li>
+                    <li><a href="acessorios.html">Acessórios</a></li>
+                    <li><a href="festa.html">Festa</a></li>
+                    <li><a href="outlet.html">Outlet</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <span class="icon-search"><img src="img/search-alt-1-svgrepo-com.svg" width="30px" alt="Buscar"></span>
+                <span class="icon-bag"><img src="img/bag-svgrepo-com.svg" width="30px" alt="Carrinho de Compras"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filtros de Categoria -->
+    <section class="category-filter">
+        <h1>SALE - Roupas em Promoção</h1>
+        <div class="filter-options">
+            <button onclick="filterProducts('all')">Todos</button>
+            <button onclick="filterProducts('vestido')">Vestidos</button>
+            <button onclick="filterProducts('blusa')">Blusas</button>
+            <button onclick="filterProducts('calca')">Calças</button>
+            <button onclick="filterProducts('short')">Shorts</button>
+            <button onclick="filterProducts('casaco')">Casacos</button>
+        </div>
+    </section>
+
+    <!-- Vitrine de Produtos -->
+    <section class="product-showcase" id="todos">
+        <h2>Todos os Produtos</h2>
+        <div class="product-grid">
+            <div class="product-card vestido">
+                <img src="img/vestido festa (1).jpg" alt="Vestido Blue">
+                <h2>Vestido Aurora</h2>
+                <p>De <span class="old-price">R$ 250,00</span> por <span class="new-price">R$ 180,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card vestido">
+                <img src="img/vestidos promoçao  (3).jpg" alt="Vestido Blue">
+                <h2>Vestido Blue</h2>
+                <p>De <span class="old-price">R$ 150,00</span> por <span class="new-price">R$ 110,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card vestido">
+                <img src="img/vestidos promoçao  (4).jpg" alt="Vestido Green">
+                <h2>Vestido Green</h2>
+                <p>De <span class="old-price">R$ 150,00</span> por <span class="new-price">R$ 110,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card vestido">
+                <img src="img/festa (6).jpg" alt="Vestido Red">
+                <h2>Short Estampa</h2>
+                <p>De <span class="old-price">R$ 200,00</span> por <span class="new-price">R$ 150,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card vestido">
+                <img src="img/vestidos promoçao  (8).jpg" alt="Vestido Red">
+                <h2>Vestido</h2>
+                <p>De <span class="old-price">R$ 200,00</span> por <span class="new-price">R$ 150,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card vestido">
+                <img src="img/festa (6).jpg" alt="Vestido Red">
+                <h2>Vestido</h2>
+                <p>De <span class="old-price">R$ 200,00</span> por <span class="new-price">R$ 150,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card vestido">
+                <img src="img/vestidos promoçao  (5).jpg" alt="Vestido Red">
+                <h2>Vestido</h2>
+                <p>De <span class="old-price">R$ 200,00</span> por <span class="new-price">R$ 150,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card vestido">
+                <img src="img/vestidos promoçao  (2).jpg" alt="Vestido Red">
+                <h2>Vestido</h2>
+                <p>De <span class="old-price">R$ 200,00</span> por <span class="new-price">R$ 150,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <!-- Exemplo de blusas -->
+            <div class="product-card blusa">
+                <img src="img/peças promocionais (8).jpg" alt="Blusa Floral">
+                <h2>Blusa Cetin</h2>
+                <p>De <span class="old-price">R$ 100,00</span> por <span class="new-price">R$ 70,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card blusa">
+                <img src="img/blusa canelada.webp" alt="Blusa Lisa">
+                <h2>Blusa Canelada </h2>
+                <p>De <span class="old-price">R$ 80,00</span> por <span class="new-price">R$ 60,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card blusa">
+                <img src="img/blusa marron.jpg" alt="Blusa Floral">
+                <h2>Thi-Shart</h2>
+                <p>De <span class="old-price">R$ 100,00</span> por <span class="new-price">R$ 70,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card blusa">
+                <img src="img/blusa poar.webp" alt="Blusa Lisa">
+                <h2>Blusa Poar</h2>
+                <p>De <span class="old-price">R$ 80,00</span> por <span class="new-price">R$ 60,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card blusa">
+                <img src="img/crooped vers.jpg" alt="Blusa Floral">
+                <h2>Crooped</h2>
+                <p>De <span class="old-price">R$ 100,00</span> por <span class="new-price">R$ 70,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card blusa">
+                <img src="img/blusa canelada.webp" alt="Blusa Lisa">
+                <h2>Blusa Canelada</h2>
+                <p>De <span class="old-price">R$ 80,00</span> por <span class="new-price">R$ 60,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card blusa">
+                <img src="img/peças promocionais (8).jpg" alt="Blusa Floral">
+                <h2>Blusa Cetin</h2>
+                <p>De <span class="old-price">R$ 100,00</span> por <span class="new-price">R$ 70,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card blusa">
+                <img src="img/blusa canelada.webp" alt="Blusa Lisa">
+                <h2></h2>
+                <p>De <span class="old-price">R$ 80,00</span> por <span class="new-price">R$ 60,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <!-- Exemplo de calças -->
+            <div class="product-card calca">
+                <img src="img/calça jeans.jpg" alt="Calça Jeans">
+                <h2>Calça Jeans</h2>
+                <p>De <span class="old-price">R$ 120,00</span> por <span class="new-price">R$ 90,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card calca">
+                <img src="img/calças jeans (1).jpg" alt="Calça de Moletom">
+                <h2>Calça de Moletom</h2>
+                <p>De <span class="old-price">R$ 110,00</span> por <span class="new-price">R$ 80,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card calca">
+                <img src="img/calças jeans (2).jpg" alt="Calça Jeans">
+                <h2>Calça Jeans</h2>
+                <p>De <span class="old-price">R$ 120,00</span> por <span class="new-price">R$ 90,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card calca">
+                <img src="img/calças jeans (3).jpg" alt="Calça de Moletom">
+                <h2>Calça de Moletom</h2>
+                <p>De <span class="old-price">R$ 110,00</span> por <span class="new-price">R$ 80,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card calca">
+                <img src="img/calças jeans (5).jpg" alt="Calça Jeans">
+                <h2>Calça Jeans</h2>
+                <p>De <span class="old-price">R$ 120,00</span> por <span class="new-price">R$ 90,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card calca">
+                <img src="img/calças jeans (6).jpg" alt="Calça de Moletom">
+                <h2>Calça de Moletom</h2>
+                <p>De <span class="old-price">R$ 110,00</span> por <span class="new-price">R$ 80,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card calca">
+                <img src="img/calças jeans (3).jpg" alt="Calça Jeans">
+                <h2>Calça Jeans</h2>
+                <p>De <span class="old-price">R$ 120,00</span> por <span class="new-price">R$ 90,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card calca">
+                <img src="img/calças jeans (3).jpg" alt="Calça de Moletom">
+                <h2>Calça de Moletom</h2>
+                <p>De <span class="old-price">R$ 110,00</span> por <span class="new-price">R$ 80,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <!-- Exemplo de shorts -->
+            <div class="product-card short">
+                <img src="img/shortes (1).jpg" alt="Short Jeans">
+                <h2>Short Jeans</h2>
+                <p>De <span class="old-price">R$ 90,00</span> por <span class="new-price">R$ 60,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card short">
+                <img src="img/shortes (2).jpg" alt="Short de Algodão">
+                <h2>Short Alfaiataria</h2>
+                <p>De <span class="old-price">R$ 80,00</span> por <span class="new-price">R$ 50,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card short">
+                <img src="img/shortes (3).jpg" alt="Short Jeans">
+                <h2>Short Jeans</h2>
+                <p>De <span class="old-price">R$ 90,00</span> por <span class="new-price">R$ 60,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card short">
+                <img src="img/shortes (4).jpg" alt="Short de Algodão">
+                <h2>Short Alfaiataria</h2>
+                <p>De <span class="old-price">R$ 80,00</span> por <span class="new-price">R$ 50,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card short">
+                <img src="img/shortes (5).jpg" alt="Short Jeans">
+                <h2>Short Jeans</h2>
+                <p>De <span class="old-price">R$ 90,00</span> por <span class="new-price">R$ 60,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card short">
+                <img src="img/shortes (6).jpg" alt="Short de Algodão">
+                <h2>Short Alfaiataria</h2>
+                <p>De <span class="old-price">R$ 80,00</span> por <span class="new-price">R$ 50,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card short">
+                <img src="img/shortes (7).jpg" alt="Short Jeans">
+                <h2>Short Jeans</h2>
+                <p>De <span class="old-price">R$ 90,00</span> por <span class="new-price">R$ 60,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card short">
+                <img src="img/shortes (6).jpg" alt="Short de Algodão">
+                <h2>Short Alfaiataria</h2>
+                <p>De <span class="old-price">R$ 80,00</span> por <span class="new-price">R$ 50,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <!-- Exemplo de casacos -->
+            <div class="product-card casaco">
+                <img src="img/casacos (1).jpg" alt="Casaco de Lã">
+                <h2>Casaco de Lã</h2>
+                <p>De <span class="old-price">200,00</span> por <span class="new-price">R$ 150,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card casaco">
+                <img src="img/casacos (2).jpg" alt="Casaco de Couro">
+                <h2>Casaco de Couro</h2>
+                <p>De <span class="old-price">250,00</span> por <span class="new-price">R$ 180,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card casaco">
+                <img src="img/blazer azul.jpg" alt="Casaco de Lã">
+                <h2>Blazer</h2>
+                <p>De <span class="old-price">200,00</span> por <span class="new-price">R$ 150,00</span></p>
+                <button>Comprar</button>
+            </div>
+            <div class="product-card casaco">
+                <img src="img/blazer marron.webp" alt="Casaco de Couro">
+                <h2>Casaco de Couro</h2>
+                <p>De <span class="old-price">250,00</span> por <span class="new-price">R$ 180,00</span></p>
+                <button>Comprar</button>
+            </div>
+        </div>
+       
+        
+    </div>
+    
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <h2>Receba Ofertas Exclusivas</h2>
+        <p>Inscreva-se para receber descontos e novidades direto no seu e-mail!</p>
+        <div class="subscription-box">
+            <input type="email" placeholder="Digite seu e-mail">
+            <button>Inscrever-se</button>
+        </div>
+        <p class="footer-text">Ao inscrever-se, você concorda em receber material de marketing da Amissima.</p>
+        <div class="social-links">
+            <a href="#facebook"><img src="img/facebook-svgrepo-com (1).svg" width="30" alt="Facebook"></a>
+            <a href="#instagram"><img src="img/instagram-svgrepo-com (1).svg" width="30" alt="Instagram"></a>
+            <a href="#twitter"><img src="img/twitter-svgrepo-com (1).svg" width="30" alt="Twitter"></a>
+            <a href="#youtube"><img src="img/video-library-svgrepo-com (1).svg" width="30" alt="YouTube"></a>
+        </div>
+    </footer>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Fina Estampa. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-card');
+            products.forEach(product => {
+                if (category === 'all' || product.classList.contains(category)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
